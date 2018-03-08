@@ -1,0 +1,16 @@
+1.) Put test cases for each assignment in the "tests" folder in their own folder, the folder name is then used to identify the test
+	- A test requires a "tests.txt" file, containing the test cases
+	- It can optionally have a "abolish.txt" file, containing comma-seperated predicates to abolish in this format
+		- Format: predicate1/1, predicate2/1, blabla/2
+	- It can optionally have a "database.pl" file, containing additional predicates to consult
+	- It can optionally have a "pre.pl" file, containing pre-knowledge to consult before anything else
+	- If the name is preceeded by a "_", the test folder is ignored
+	- See examples
+
+See example tests on how to format tests.
+
+2.) Put the brightspace submission folders from the students in the "assignments" folder
+
+3.) Run main.py
+
+4.) For every submission that doesn't contain syntax errors or other weird stuff, an "out" file is generated for each test folder. These tell you whether

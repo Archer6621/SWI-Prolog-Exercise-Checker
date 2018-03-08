@@ -1,0 +1,53 @@
+# Separate variable and value by: =
+# Separate expected values for different variables by: |:|
+# Example: X=1 |:| Y=2 |:| Q=3
+
+# Denote variables to test in the given goal by: <TVAR:VARIABLE_HERE>
+# Example: predicate(<TVAR:X>)
+
+# Query type can be:
+# - query: simply performs a query with the test variables and checks if it matches the expected value
+# - query_rev: does the above, but flips the order of unification (goal first, then checks if it unifies)
+# - exist: checks if some predicate exists, succeeds when it does
+# - not_exist: checks if some predicate does not exist, succeeds when it doesn't
+
+# Comments and extra info can be included if the line starts with "#"
+
+# There needs to be at least 1 tab between each column
+
+
+#NAME 					GOAL 													TYPE 			EXPECTED
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+a1_query				listMovies(<TVAR:X>)									query			X=['The Imitation Game','The Godfather','A Bad Movie','Z Good Movie']
+
+# Some shoddy implementation break when turning around the unification order
+a1_query_reverse		listMovies(<TVAR:X>)									query_rev		X=['The Imitation Game','The Godfather','A Bad Movie','Z Good Movie']
+
+a2_query				listMoviesByName(<TVAR:X>)								query			X=['A Bad Movie','The Godfather','The Imitation Game','Z Good Movie']
+
+# Optional in case people didn't use the genre predicate, just being lenient, but you may want to partially subtract points for this
+GROUP:a3_action_query
+a3_action_query_1		listMoviesByGenre(genre('action'), <TVAR:X>)			query			X=['A Bad Movie']
+a3_action_query_2		listMoviesByGenre('action', <TVAR:X>)					query			X=['A Bad Movie']
+--
+
+# Optional in case people didn't use the genre predicate, just being lenient, but you may want to partially subtract points for this
+GROUP:a3_drama_query
+a3_drama_query_1		listMoviesByGenre(genre('drama'), <TVAR:X>)				query			X=['The Imitation Game','The Godfather']
+a3_drama_query_2		listMoviesByGenre('drama', <TVAR:X>)					query			X=['The Imitation Game','The Godfather']
+--
+
+b1_query				(db(L),listMoviesByRank(L, <TVAR:X>))					query			X=['Z Good Movie', 'The Godfather', 'The Imitation Game', 'A Bad Movie']
+
+# Optional in case people didn't use the genre predicate, just being lenient, but you may want to partially subtract points for this
+GROUP:b2_action_query
+b2_action_query_1		(db(L),numberMovies(L,genre('action'), <TVAR:X>))		query			X=1
+b2_action_query_2		(db(L),numberMovies(L,'action', <TVAR:X>))				query			X=1
+--
+
+# Optional in case people didn't use the genre predicate, just being lenient, but you may want to partially subtract points for this
+GROUP:b2_drama_query
+b2_drama_query_1		(db(L),numberMovies(L,genre('drama'), <TVAR:X>))		query			X=2
+b2_drama_query_2		(db(L),numberMovies(L,'drama', <TVAR:X>))				query			X=2
+--

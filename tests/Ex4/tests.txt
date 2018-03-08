@@ -1,0 +1,36 @@
+# Separate variable and value by: =
+# Separate expected values for different variables by: |:|
+# Example: X=1 |:| Y=2 |:| Q=3
+
+# Denote variables to test in the given goal by: <TVAR:VARIABLE_HERE>
+# Example: predicate(<TVAR:X>)
+
+# Query type can be:
+# - query: simply performs a query with the test variables and checks if it matches the expected value
+# - query_rev: does the above, but flips the order of unification (goal first, then checks if it unifies)
+# - exist: checks if some predicate exists, succeeds when it does
+# - not_exist: checks if some predicate does not exist, succeeds when it doesn't
+
+# Comments and extra info can be included if the line starts with "#"
+
+# There needs to be at least 1 tab between each column
+
+#NAME 				GOAL 									TYPE 				EXPECTED
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Tests for fib1
+fib1_0				fib1(0, <TVAR:X>)						query				X=0
+fib1_1				fib1(1, <TVAR:X>)						query				X=1
+fib1_2				fib1(2, <TVAR:X>)						query				X=1
+fib1_5				fib1(5, <TVAR:X>)						query				X=5
+fib1_8				fib1(8, <TVAR:X>)						query				X=21
+fib1_16				fib1(16, <TVAR:X>)						query				X=987
+
+
+# Tests for fib2
+fib2_0				fib2(0, <TVAR:X>)						query				X=0
+fib2_1				fib2(1, <TVAR:X>)						query				X=1
+fib2_2				fib2(2, <TVAR:X>)						query				X=1
+fib2_5				fib2(5, <TVAR:X>)						query				X=5
+fib2_8				fib2(8, <TVAR:X>)						query				X=21
+fib2_16				fib2(16, <TVAR:X>)						query				X=987

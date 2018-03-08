@@ -1,0 +1,37 @@
+# Separate variable and value by: =
+# Separate expected values for different variables by: |:|
+# Example: X=1 |:| Y=2 |:| Q=3
+
+# Denote variables to test in the given goal by: <TVAR:VARIABLE_HERE>
+# Example: predicate(<TVAR:X>)
+
+# Query type can be:
+# - query: simply performs a query with the test variables and checks if it matches the expected value
+# - query_rev: does the above, but flips the order of unification (goal first, then checks if it unifies)
+# - exist: checks if some predicate exists, succeeds when it does
+# - not_exist: checks if some predicate does not exist, succeeds when it doesn't
+
+# Comments and extra info can be included if the line starts with "#"
+
+# There needs to be at least 1 tab between each column
+
+#NAME 				GOAL 						TYPE 				EXPECTED
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# generate for 3
+a_gen_3_1			generate(3, <TVAR:X>)		query				X=[p(a, 2)]
+a_gen_3_2			generate(3, <TVAR:X>)		query				X=[p(b, 3)]
+
+# generate for 5
+a_gen_5_1			generate(5, <TVAR:X>)		query				X=[p(a, 2)]
+a_gen_5_2			generate(5, <TVAR:X>)		query				X=[p(b, 3)]
+a_gen_5_3			generate(5, <TVAR:X>)		query				X=[p(c, 5)]
+a_gen_5_4			generate(5, <TVAR:X>)		query				X=[p(a, 2), p(a, 2)]
+a_gen_5_5			generate(5, <TVAR:X>)		query				X=[p(a, 2), p(b, 3)]
+a_gen_5_6			generate(5, <TVAR:X>)		query				X=[p(b, 3), p(a, 2)]
+
+# generate max for 5
+a_gen_max_5_1		generateMax(5, <TVAR:X>)	query				X=[p(a, 2), p(a, 2)]
+a_gen_max_5_2		generateMax(5, <TVAR:X>)	query				X=[p(a, 2), p(b, 3)]
+a_gen_max_5_3		generateMax(5, <TVAR:X>)	query				X=[p(b, 3), p(a, 2)]
+a_gen_max_5_4		generateMax(5, <TVAR:X>)	query				X=[p(c, 5)]

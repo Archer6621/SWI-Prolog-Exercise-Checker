@@ -1,0 +1,3 @@
+<GOAL>,
+write("Result=false"), write("|:|"), writeln(fail);
+write("Result=true"), write("|:|"), writeln(pass)

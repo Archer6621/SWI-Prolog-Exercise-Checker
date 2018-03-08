@@ -1,0 +1,4 @@
+<EXPECTED>,<GOAL>,
+<WRITEVAR>,writeln(pass);
+<WRITEVAR>,writeln(fail);
+writeln("No such predicate or unification exists"),writeln("|:|"),writeln(fail)
